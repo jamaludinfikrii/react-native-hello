@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, SafeAreaView, Switch, Text, TextInput, View,} from 'react-native'
+import { Alert, BackHandler, Button, FlatList, SafeAreaView, Switch, Text, TextInput, ToastAndroid, View,} from 'react-native'
 
 
 const Data = [
@@ -9,6 +9,26 @@ const Data = [
 ]
 
 const App = () => {
+
+  const onExitPress = () => {
+    Alert.alert(
+      'Hold on!!',
+      'Are You Sure Want To Exit??',
+      [
+        {text : "cancel", onPress:() => null, style:'cancel'},
+        {text : "exit", onPress:() => BackHandler.exitApp(), style:'default'},
+      ]
+    )
+  }
+
+  const onShowToastPress = () => {
+    ToastAndroid.showWithGravity(
+      "All Your Base Are Belong To Us",
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM
+    );
+  }
+
   return(
     <SafeAreaView>
       {/* <View>
@@ -36,6 +56,13 @@ const App = () => {
        )}
        keyExtractor={(item) => item.id.toString()}
       />
+
+
+
+      <Button title='Exit' onPress={onExitPress} />
+
+
+      <Button title='Show Toast' onPress={onShowToastPress} />
     </SafeAreaView>
   )
 }
