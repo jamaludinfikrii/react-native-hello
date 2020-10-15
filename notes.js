@@ -6,7 +6,6 @@
 // Redux ==> Library for managing apps data 
 
 
-export const Sum = (a,b) => {
-    return a - b
-}
-
+let a = 01
+a = a + 1
+console.log(a)

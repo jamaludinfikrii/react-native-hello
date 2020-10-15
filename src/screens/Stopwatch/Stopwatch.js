@@ -1,35 +1,55 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Button, SafeAreaView, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native'
 
 const Stopwatch = () => {
-    const [times,setTimes] = useState({
-        ms : 0,
-        s : 0,
-        m : 0,
-    })
-
+    const [times,setTimes] = useState('00 : 00 : 00')
+    const [isStart,setIsStart] = useState(false)
+    const interval = useRef(null)
   
 
     const onStart = () => {
+        setIsStart(true)
 
-        window.interval = setInterval(() => {
+        interval.current = setInterval(() => {
             setTimes((prev) => {
-                return {...times,s : prev.s + 1}
+                let newTimes = prev // "00 : 00 : 00"
+                let ms = Number(newTimes.split(':')[0])
+                let s = Number(newTimes.split(':')[1])
+                let m = Number(newTimes.split(':')[2])
+
+                
+                if(ms == 100){
+                    ms = 0
+                    s ++
+                }else if(s == 60){
+                    s = 0
+                    m++
+                }else{
+                    ms ++
+                }
+
+                newTimes = ms < 10 ? '0' + ms : ms
+                newTimes += ' : '
+
+                newTimes += s < 10 ? '0' + s : s
+                newTimes += ' : '
+
+                newTimes += m < 10 ? '0' + m : m
+                
+                return newTimes
             })
-        },1000)
+        },1)
 
     }
 
     const onStop = () => {
-        clearInterval(window.interval)
+        setIsStart(false)
+        clearInterval(interval.current)
     }
 
     const onReset = () => {
-        setTimes({
-            ms : 0,
-            s : 0,
-            m : 0
-        })
+        clearInterval(interval.current)
+        setTimes("00 : 00 : 00")
     }
 
 
@@ -43,14 +63,13 @@ const Stopwatch = () => {
 
             {/* Stopwatch */}
             <View style={{flexDirection : "row",justifyContent : "center",marginTop : 30}}>
-                <Text style={{fontSize : 60}}>00 : </Text> 
-                <Text style={{fontSize : 60}}>{times.s < 10 ? '0' + times.s : times.s} : </Text>
-                <Text style={{fontSize : 60}}>00 </Text>
+                <Text style={{fontSize : 60}}>{times} </Text> 
+                
             </View>
 
             {/* Buttons */}
             <View style={{flexDirection : "row",justifyContent : "center",marginTop : 20}}>
-                <TouchableOpacity onPress={onStart} style={{backgroundColor : "black" , padding : 10,marginRight : 10}}> 
+                <TouchableOpacity onPress={onStart} disabled={isStart} style={{backgroundColor : "black" , padding : 10,marginRight : 10}}> 
                     <Text style={{color :"white"}}>
                         Start 
                     </Text>
