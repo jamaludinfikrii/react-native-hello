@@ -6,6 +6,13 @@
 // Redux ==> Library for managing apps data 
 
 
-let a = 01
-a = a + 1
-console.log(a)
+
+const start = new Date().getTime()
+for(var i = 0 ; i < 10000000 ; i ++){
+
+}
+
+const end = new Date().getTime()
+
+let selisih = end - start
+console.log(selisih)

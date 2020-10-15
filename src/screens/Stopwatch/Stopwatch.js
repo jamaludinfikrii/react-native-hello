@@ -4,40 +4,64 @@ import { Button, SafeAreaView, Text, TouchableHighlight, TouchableOpacity, View 
 const Stopwatch = () => {
     const [times,setTimes] = useState('00 : 00 : 00')
     const [isStart,setIsStart] = useState(false)
+    const [startTime,setStartTime] = useState(null)
     const interval = useRef(null)
-  
+    
 
     const onStart = () => {
+        const time = new Date().getTime()
+        setStartTime(time)
+
         setIsStart(true)
 
         interval.current = setInterval(() => {
-            setTimes((prev) => {
-                let newTimes = prev // "00 : 00 : 00"
-                let ms = Number(newTimes.split(':')[0])
-                let s = Number(newTimes.split(':')[1])
-                let m = Number(newTimes.split(':')[2])
+            // setTimes((prev) => {
+            //     let newTimes = prev // "00 : 00 : 00"
+            //     let ms = Number(newTimes.split(':')[0])
+            //     let s = Number(newTimes.split(':')[1])
+            //     let m = Number(newTimes.split(':')[2])
 
                 
-                if(ms == 100){
-                    ms = 0
-                    s ++
-                }else if(s == 60){
-                    s = 0
-                    m++
-                }else{
-                    ms ++
-                }
+            //     if(ms == 100){
+            //         ms = 0
+            //         s ++
+            //     }else if(s == 60){
+            //         s = 0
+            //         m++
+            //     }else{
+            //         ms ++
+            //     }
 
-                newTimes = ms < 10 ? '0' + ms : ms
-                newTimes += ' : '
+            //     newTimes = ms < 10 ? '0' + ms : ms
+            //     newTimes += ' : '
 
-                newTimes += s < 10 ? '0' + s : s
-                newTimes += ' : '
+            //     newTimes += s < 10 ? '0' + s : s
+            //     newTimes += ' : '
 
-                newTimes += m < 10 ? '0' + m : m
+            //     newTimes += m < 10 ? '0' + m : m
                 
-                return newTimes
-            })
+            //     return newTimes
+            // })
+
+            let diff = new Date().getTime() - startTime 
+
+            console.log(diff)
+
+            let m = Math.floor(diff / 600)
+            let sisaM = diff % 600 
+            let s = Math.floor(sisaM / 100)
+            let sisaS = sisaM % 100
+            let ms = sisaS
+
+            let newTimes = ms < 10 ? '0' + ms : ms
+            newTimes += ' : '
+
+            newTimes += s < 10 ? '0' + s : s
+            newTimes += ' : '
+
+            newTimes += m < 10 ? '0' + m : m
+
+            setTimes(newTimes)
         },1)
 
     }
