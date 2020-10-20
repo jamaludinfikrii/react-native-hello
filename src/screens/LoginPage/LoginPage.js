@@ -1,5 +1,6 @@
 import React from 'react'
 import { SafeAreaView, Text, View } from 'react-native';
+import Header from '../../components/Header';
 import color from '../../supports/styles/Color';
 import spacing from '../../supports/styles/Spacing';
 
@@ -8,9 +9,7 @@ function LoginPage(){
     return(
         <SafeAreaView>
             <View style={{...color.bgPrimary,...spacing.pOne}}>
-                <Text style={color.white}>
-                    Login Here
-                </Text>
+                <Header content='Login Here' />
             </View>
         </SafeAreaView>
     )

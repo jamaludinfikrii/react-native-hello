@@ -7,12 +7,15 @@
 
 
 
-const start = new Date().getTime()
-for(var i = 0 ; i < 10000000 ; i ++){
+// Core Components
+// Hooks
+    // UseState
+    // UseEffect
 
-}
+// Styling
 
-const end = new Date().getTime()
-
-let selisih = end - start
-console.log(selisih)
+// Layouting
+// Navigation
+    // Stack 
+    // Tab
+    // Drawer
