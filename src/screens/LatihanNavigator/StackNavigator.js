@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 
 const Register =(props) => {
     return(
@@ -108,7 +108,7 @@ const ProductStack = () => {
     )
 }
 
-const HomeStack = createStackNavigator()
+const HomeStack = createBottomTabNavigator()
 const HomePage =() => {
     return(
        <HomeStack.Navigator>
