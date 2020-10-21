@@ -106,8 +106,7 @@ export default MyStack
     // productList (navigator)
         // products
         // product Detail
-            // edit product
-                // delete product
+
 
 
 
