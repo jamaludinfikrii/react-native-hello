@@ -22,6 +22,7 @@ function CounterHooks(){
         getData()
     },[])
 
+    // componentDidUpdate
     useEffect(() => {
         console.log("HORRAY")
     },[counter])
