@@ -13,19 +13,21 @@ import ProductDetail from '../ProductDetail/ProductDetail';
 
 
 const StackProduct = createStackNavigator()
-const ProductStack = () => {
+const ProductStack = ({name}) => {
     console.log('navigator product page')
+    console.log(name)
 
     return(
         <StackProduct.Navigator>
             <StackProduct.Screen name='products' component={ProductList} />
-            <StackProduct.Screen name='detail' component={ProductDetail} />
+            <StackProduct.Screen name='detail' children={() => <ProductDetail name={name} />} />
         </StackProduct.Navigator>
     )
 }
 
 const HomeStack = createBottomTabNavigator()
-const HomePage =() => {
+const HomePage =({route}) => {
+    const {name} = route.params
     console.log('navigator hompage page')
 
     return(
@@ -66,7 +68,8 @@ const HomePage =() => {
                     )
                 }}}
                 name='products' 
-                component={ProductStack} 
+                children={ () =>  <ProductStack name={name} />} 
+                
             />
        </HomeStack.Navigator>
     )
@@ -103,4 +106,18 @@ export default MyStack
     // productList (navigator)
         // products
         // product Detail
+            // edit product
+                // delete product
+
+
+
+// app.js
+    // dashboard
+    // account
+    // chat
+    // products
+    // productdetail
+    // edit
+    // register
+    // login
    

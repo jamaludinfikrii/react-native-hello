@@ -1,6 +1,9 @@
 import React from 'react'
 import {View,Text} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
+
+const name = 'fikri'
+
 const Register =(props) => {
     console.log('register page')
     return(
@@ -11,7 +14,7 @@ const Register =(props) => {
             <Text style={{color:"blue",fontStyle :"italic"}} onPress={() =>props.navigation.navigate("login") }>
                 Go To Login
             </Text>
-            <Text style={{color:"blue",fontStyle :"italic"}} onPress={() =>props.navigation.navigate("homepage") }>
+            <Text style={{color:"blue",fontStyle :"italic"}} onPress={() =>props.navigation.navigate("homepage", {name : name}) }>
                 Go To Homepage
             </Text>
             <Icon.Button

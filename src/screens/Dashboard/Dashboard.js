@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View } from 'react-native'
 
 
-const Dashboard = ({navigation}) => {
+const Dashboard = ({navigation,route}) => {
     console.log('dashboard page')
 
     return(
